@@ -587,17 +587,41 @@ header {
 
 @media only screen and (max-width:500px) {
   .round img{
-    width: 100%;
-    
+    width: 250px;
+    margin-left: -40px;
+    height: 100%;
   }
 } 
 
 @media only screen and (max-width:500px) {
   .verified #s{
     width: 80%;
-    
   }
 } 
 
+@media only screen and (max-width:500px) {
+  #about {
+    overflow: hidden;
+  }
+} 
 
-  
+@media only screen and (max-width:500px) {
+  #sr p{
+    margin-top: 10px;
+    font-size: 14px;
+    background: #f5f6f7;
+    padding: 5px;
+    width: 300px;
+    margin-left: -100px;
+    border-radius: 5px
+  }
+} 
+
+@media only screen and (max-width:500px) {
+  .backimg-text {
+    /* padding-left: 10px; */
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  }
+} 
+

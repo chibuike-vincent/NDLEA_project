@@ -230,7 +230,7 @@ header {
   width: 40%;
 }
 .backimg {
-  background: url("../../images/Cover\ bg.jpg");
+  background: url("/assets/0e1a8596914882785.jpg");
   margin-top: 72px;
   height: 100vh;
   background-repeat: no-repeat;
@@ -591,6 +591,7 @@ header {
     margin-left: -40px;
     height: 100%;
   }
+  
 } 
 
 @media only screen and (max-width:500px) {
@@ -619,7 +620,6 @@ header {
 
 @media only screen and (max-width:500px) {
   .backimg-text {
-    /* padding-left: 10px; */
     text-align: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
   }

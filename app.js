@@ -3,10 +3,16 @@ let express    = require("express"),
  mongoose     = require("mongoose"),
  bodyparser   = require( "body-parser" );
 
-mongoose.connect("mongodb://localhost:/NDLEA")
+mongoose.connect("mongodb://localhost:27017/NDLEA", { useNewUrlParser: true })
+.then(()=> {
+  console.log("Database connected");
+})
+.catch((err) =>{
+  console.log("An error occurred"+ err)
+})
 app.use( bodyparser.urlencoded( { extended: true } ));
 app.use( express.static("public"));
-app.set("view engine", "ejs");
+app.set("view engine", "ejs");7
 
 // SETUP SCHEMA
 let culpritSchema = new mongoose.Schema({
@@ -23,7 +29,8 @@ let culpritSchema = new mongoose.Schema({
   sellerName: String,
   sellerLocation: String,
   passport: String,
-  description: String
+  description: String,
+  date: {type: Date, default: Date.now }
 })
 
 let Culprit = mongoose.model("Culprit", culpritSchema );
@@ -53,7 +60,7 @@ app.get( '/culprits', ( req, res )=> {
     } else {
       res.render( "index", { allCulprits })
     }
-  })
+  }).sort({'date': -1})
 });
 
 //CREATE -- ADD NEW CULPRIT TO DB

@@ -8,10 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>NDLEA</title>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/index.css">
 
 </head>
@@ -29,10 +25,11 @@
         <div class="profile">
           <ul>
             <li>Home</li>
-            <li>About</li>
+            <li><a href="#about">About</a></li>
+            <li><a class="btn btn-sm btn-default" href="#services">Services</a></li>
+            <li><a class="btn btn-sm btn-default" href="#verified">Executives</a></li>
             <li><a class="btn btn-sm btn-default" href="/signin">Login</a></li>
             <li><a class="btn btn-sm btn-default" href="/signup">Signup</a></li>
-            <li><a class="btn btn-sm btn-default" href="/register">Register Culprit</a></li>
           </ul>
         </div>
       </header>
@@ -45,7 +42,7 @@
           <h3 style="font-size: 50px;font-weight: bolder;">National </h3>
           <h3 style="font-size: 60px;font-weight:normal">Drug Law</h3>
           <h3 style="font-size: 40px;font-weight: normal;">Enforcement Agency</h3>
-          <a class="link" href="#about">GET STARTED</a>
+          <a class="link" href="/signin"><button>GET STARTED</button></a>
         </div>
       </div>
       <div class="about" id="about">
@@ -66,7 +63,7 @@
           </div>
         </div>
       </div>
-      <div class="services">
+      <div id="services" class="services">
         <h2>SERVICES</h2>
         <div class="course-cards">
           <div class="card-wraper">
@@ -105,7 +102,7 @@
         </div>
       </div>
 
-      <div class="verified">
+      <div id="verified" class="verified">
         <h2>OUR EXECUTIVES</h2>
         <div class="course-cards">
           <div class="card-wraper">
@@ -157,33 +154,8 @@
       </div>
     </aside>
   </main>
-  <div class="footer">
-      <div class="row">
-        <div class="col-lg-6" id="footer">
-          <h2>Social Links</h2>
-          <ul>
-            <li>Facebook</li>
-            <li>Twitter</li>
-            <li>Whatsapp</li>
-          </ul>
-        </div>
-        <div class="col-lg-6" id="footer">
-            <h2>column 2</h2>
-        </div>
-        <div class="col-lg-6" id="footer">
-            <h2>column 3</h2>
-        </div>
-        <div class="col-lg-6" id="footer">
-            <h2>column 4</h2>
-        </div>
-
-      </div>
-    </div>
-    
-  <script src="./scripts/dashboard.js"></script>
-
 </body>
 
 </html>
 
-<!-- <% include partials/footer%> -->
+<% include partials/footer%>

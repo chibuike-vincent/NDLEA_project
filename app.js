@@ -14,6 +14,7 @@ let culpritSchema = new mongoose.Schema({
   age: Number,
   sex: String,
   lga: String,
+  state: String,
   phoneNumber: Number,
   occupation: String,
   nameOfDrug: String,
@@ -21,87 +22,65 @@ let culpritSchema = new mongoose.Schema({
   frequency: String,
   sellerName: String,
   sellerLocation: String,
-  passport: String
+  passport: String,
+  description: String
 })
 
 let Culprit = mongoose.model("Culprit", culpritSchema );
 
-
-// Culprit.create(
-//   {
-//     name: "Western camp", 
-//     image: '/assets/mbuntu-2.jpg',
-//     description: "This is a camp on the western side of Nigeria. It has a beautiful scene with lush vegetation."
-//   },function(err,camp){
-//     if(err){
-//       console.log(`${err}, There was an error`)
-//     } else {
-//       console.log("NEWLY CREATED CAMPGRIUND")
-//       console.log(camp)
-//     }
-//   })
-
-
+// INDEX ROUTE
 app.get("/", ( req, res)=>{
   res.render( "landing" )
 });
 
-app.get("/register", ( req, res)=>{
-  res.render( "register_culprit" )
-});
 
+// SIGNIN ROUTE
 app.get("/signin", ( req, res)=>{
   res.render( "signin" )
 });
 
 
+// SIGNUP ROUTE
 app.get("/signup", ( req, res)=>{
   res.render( "signup" )
 });
 
-// INDEX -- SHOW ALL CAMPGROUNDS
-app.get( '/campgrounds', ( req, res )=> {
-  Campground.find({}, function(err, allCampgrounds){
+// INDEX -- SHOW ALL CULPRITS
+app.get( '/culprits', ( req, res )=> {
+  Culprit.find({}, function(err, allCulprits){
     if(err){
       console.log( err )
     } else {
-      res.render( "index", { campgrounds: allCampgrounds })
+      res.render( "index", { allCulprits })
     }
   })
 });
 
-//CREATE -- ADD NEW CAMPGROUND TO DB
-app.post( '/campgrounds', ( req, res)=> {
-  // get data from form and add to newCamp object
-let name            = req.body.name,
-   incomingImage    = req.body.image,
-   image            = `/assets/${incomingImage}`,
-   description      = req.body.description,
-   newCamp          = { name, image, description };
-  
-  // create new camp ground and save to db
-  Campground.create( newCamp, function( err, newlyCreated ){
+//CREATE -- ADD NEW CULPRIT TO DB
+app.post( '/culprits', ( req, res)=> {
+  // create new culprit and save to db
+  Culprit.create( req.body.culprit, function( err, newCulprit ){
     if(err){
       console.log(err)
     } else {
-      // redirect back to campground page
-      res.redirect("/campgrounds")
+      // redirect back to culprits page
+      res.redirect("/culprits")
     }
   })
 });
 
-// NEW -- SHOW FORM TO CREATE NEW CAMPGROUND
-app.get( "/campgrounds/new", ( req, res) => {
-  res.render("new")
+// NEW -- SHOW FORM TO CREATE NEW CULPRIT
+app.get("/register", ( req, res)=>{
+  res.render( "register_culprit" )
 });
 
-// SHOW A CAMPGROUND USING ITS ID
-app.get("/campgrounds/:id", ( req, res) => {
-  Campground.findById( req.params.id, (err, foundCampground) => {
+// SHOW A CULPRIT USING ITS ID
+app.get("/culprits/:id", ( req, res) => {
+  Culprit.findById( req.params.id, (err, foundCulprit) => {
     if(err){
       console.log( err)
     } else {
-      res.render("show", {campground: foundCampground})
+      res.render("show", { foundCulprit})
     }
   })
 }); 

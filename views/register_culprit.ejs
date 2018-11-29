@@ -1,46 +1,52 @@
 <% include partials/forms_header%>
 
     <div class="reg_form">
-    <form class="form-signin">
+    <form action="/culprits" method="POST" class="form-signin">
       <h1 class="h3 mb-3 font-weight-normal">Register a culprit</h1>
       <div class="form-group">
-          <input type="text" id="fullName" class="form-control"  placeholder="Full Name" required autofocus name="fullName">
+          <input type="text" id="fullName" class="form-control"  placeholder="Full Name" required autofocus name="culprit[fullName]">
         </div>
       <div class="form-group">
-        <input type="number" id="age" class="form-control" placeholder="Age" required autofocus name="age">
+        <input type="number" id="age" class="form-control" placeholder="Age" required autofocus name="culprit[age]">
       </div>
       <div class="form-group">
-        <input type="text" id="sex" class="form-control" placeholder="Sex" required name="sex">
+        <input type="text" id="state" class="form-control" placeholder="State" required autofocus name="culprit[state]">
+      </div>
+      <div class="form-group">
+        <input type="text" id="sex" class="form-control" placeholder="Sex" required name="culprit[sex]">
       </div>
 
       <div class="form-group">
-          <input type="text" id="lga" class="form-control"  placeholder="Local Government Area" required autofocus name="lga">
+          <input type="text" id="lga" class="form-control"  placeholder="Local Government Area" required autofocus name="culprit[lga]">
         </div>
       <div class="form-group">
-        <input type="number" id="phoneNumer" class="form-control" placeholder="Phone Number" required autofocus name="phoneNumer">
+        <input type="number" id="phoneNumer" class="form-control" placeholder="Phone Number" required autofocus name="culprit[phoneNumber]">
       </div>
       <div class="form-group">
-        <input type="text" id="occupation" class="form-control" placeholder="Occupation" required name="occupation">
+        <input type="text" id="occupation" class="form-control" placeholder="Occupation" required name="culprit[occupation]">
       </div>
 
       <div class="form-group">
-        <input type="text" id="nameOfDrug" class="form-control" placeholder="Name of Drug" required autofocus name="nameOfDrug">
+        <input type="text" id="nameOfDrug" class="form-control" placeholder="Name of Drug" required autofocus name="culprit[nameOfDrug]">
       </div>
       <div class="form-group">
-          <input type="text" id="drugPrice" class="form-control"  placeholder="Drug Price" required autofocus name="drugPrice">
+          <input type="text" id="drugPrice" class="form-control"  placeholder="Drug Price" required autofocus name="culprit[drugPrice]">
       </div>
       <div class="form-group">
-        <input type="text" id="frequency" class="form-control" placeholder="Frequency of Use" required name="frequency">
+        <input type="text" id="frequency" class="form-control" placeholder="Frequency of Use" required name="culprit[frequency]">
       </div>
 
       <div class="form-group">
-          <input type="text" id="sellerName" class="form-control"  placeholder="seller's name" required autofocus name="sellerName">
+          <input type="text" id="sellerName" class="form-control"  placeholder="seller's name" required autofocus name="culprit[sellerName]">
         </div>
       <div class="form-group">
-        <input type="text" id="sellerLocation" class="form-control" placeholder="Seller's Location" required autofocus name="sellerLocation">
+        <input type="text" id="sellerLocation" class="form-control" placeholder="Seller's Location" required autofocus name="culprit[sellerLocation]">
       </div>
       <div class="form-group">
-        <input type="file" id="passport" class="form-control" placeholder="Passport" required name="passport">
+        <input type="file" id="passport" class="form-control" placeholder="Passport" required name="culprit[passport]">
+      </div>
+      <div class="form-group">
+        <textarea name="culprit[description]" id="description" cols="30" rows="10"></textarea>
       </div>
       <div class="form-group">
         <button class="btn btn-lg btn-primary btn-block btn_custom" type="submit">Submit</button>
@@ -48,29 +54,5 @@
     </form>
   </div>
   
-<div class="footer">
-  <div class="row">
-    <div class="col-lg-6" id="footer">
-      <h2>Social Links</h2>
-      <ul>
-        <li>Facebook</li>
-        <li>Twitter</li>
-        <li>Whatsapp</li>
-      </ul>
-    </div>
-    <div class="col-lg-6" id="footer">
-        <h2>column 2</h2>
-    </div>
-    <div class="col-lg-6" id="footer">
-        <h2>column 3</h2>
-    </div>
-    <div class="col-lg-6" id="footer">
-        <h2>column 4</h2>
-    </div>
-
-  </div>
-</div>
-
 </body>
-
 </html>

@@ -1,6 +1,7 @@
 let express    = require("express"),
  app          = express(),
  mongoose     = require("mongoose"),
+ methodOverride = require("method-override"),
  bodyparser   = require( "body-parser" );
 
 mongoose.connect("mongodb://localhost:27017/NDLEA", { useNewUrlParser: true })
@@ -12,19 +13,20 @@ mongoose.connect("mongodb://localhost:27017/NDLEA", { useNewUrlParser: true })
 })
 app.use( bodyparser.urlencoded( { extended: true } ));
 app.use( express.static("public"));
-app.set("view engine", "ejs");7
+app.use( methodOverride("_method"));
+app.set("view engine", "ejs");
 
 // SETUP SCHEMA
 let culpritSchema = new mongoose.Schema({
   fullName: String,
-  age: Number,
+  age: String,
   sex: String,
   lga: String,
   state: String,
-  phoneNumber: Number,
+  phoneNumber: String,
   occupation: String,
   nameOfDrug: String,
-  drugPrice: Number,
+  drugPrice: String,
   frequency: String,
   sellerName: String,
   sellerLocation: String,
@@ -52,16 +54,36 @@ app.get("/signup", ( req, res)=>{
   res.render( "signup" )
 });
 
+
+
 // INDEX -- SHOW ALL CULPRITS
 app.get( '/culprits', ( req, res )=> {
   Culprit.find({}, function(err, allCulprits){
-    if(err){
-      console.log( err )
-    } else {
-      res.render( "index", { allCulprits })
-    }
+
+    req.query.email === "giftkovop@gmail.com" 
+      ?  err 
+        ? console.log( err ) 
+        : res.render( "indexAdmin", { allCulprits }) 
+      : err 
+        ? console.log( err ) 
+        : res.render( "index", { allCulprits });
+        
   }).sort({'date': -1})
 });
+
+// SEARCH
+
+app.get("/culprits/search", (req, res) => {
+  let searchString = req.query.search;
+  console.log(searchString)
+  Culprit.find({}, (err, searchResult) => {
+    if(err){
+      console.log(err)
+    } else {
+      res.render("index", {allCulprits: searchResult})
+    }
+  }).or([{sex: searchString },{fullName:searchString},{nameOfDrug:searchString},{sellerName:searchString}])
+})
 
 //CREATE -- ADD NEW CULPRIT TO DB
 app.post( '/culprits', ( req, res)=> {
@@ -91,6 +113,53 @@ app.get("/culprits/:id", ( req, res) => {
     }
   })
 }); 
+
+app.get("/culpritsAdmin/:id", ( req, res) => {
+  Culprit.findById( req.params.id, (err, foundCulprit) => {
+    if(err){
+      console.log( err)
+    } else {
+      res.render("showAdmin", { foundCulprit})
+    }
+  })
+}); 
+
+// EDIT ROUTE
+app.get("/culprits/:id/edit", ( req,res )=> {
+  Culprit.findById( req.params.id, ( err, foundCulprit )=>{
+    if( err ){
+      console.log(`the error is at ${err}`)
+    } else {
+      res.render("edit", { foundCulprit })
+    }
+  })
+});
+
+//UPDATE ROUTE
+app.put("/culprits/:id", ( req,res )=>{
+  Culprit.findByIdAndUpdate( req.params.id, req.body.culprit, ( err,updatedCulprit )=>{
+    if( err ){
+      console.log( err )
+    } else {
+      res.redirect( `/culprits/${req.params.id}`)
+    }
+  })
+});
+
+// DELETE ROUTE
+
+app.delete("/culprits/:id", (req,res) => {
+  Culprit.findByIdAndRemove(req.params.id, (err) => {
+    // res.alert(`You are about to delete this record with an id of ${req.params.id}`)
+    if(err){
+      console.log(err)
+    }else {
+      res.redirect("/culprits")
+    }
+  })
+})
+
+
 
 app.listen( 3000, ()=>{
   console.log( "The NDLEA server has started" )

@@ -32,7 +32,10 @@ let culpritSchema = new mongoose.Schema({
   sellerLocation: String,
   passport: String,
   description: String,
-  date: {type: Date, default: Date.now }
+  date: {
+    type: Date, 
+    default: Date.now 
+  }
 })
 
 let Culprit = mongoose.model("Culprit", culpritSchema );
@@ -82,7 +85,7 @@ app.get("/culprits/search", (req, res) => {
     } else {
       res.render("index", {allCulprits: searchResult})
     }
-  }).or([{sex: searchString },{fullName:searchString},{nameOfDrug:searchString},{sellerName:searchString}])
+  }).or([{sex: searchString },{age: searchString }, {fullName:searchString},{nameOfDrug:searchString},{sellerName:searchString}])
 })
 
 //CREATE -- ADD NEW CULPRIT TO DB
